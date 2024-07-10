@@ -1,4 +1,8 @@
 from typing import TypeVar, Iterable
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from _typeshed import SupportsRichComparison
 
 from pyrsistent import PSet, PMap, PVector, pset, pmap, pvector
 from formal_verification_annotations import *
@@ -64,7 +68,7 @@ def pset_filter(p: Callable[[T1], bool], s: PSet[T1]) -> PSet[T1]:
     # return pset(filter(p, s))
 
 
-def pset_max(s: PSet[T1], a: Callable[[T1], int]) -> T1:
+def pset_max(s: PSet[T1], a: Callable[[T1], SupportsRichComparison]) -> T1:
     Requires(len(s) > 0)
     return max(s, key=a)
 
