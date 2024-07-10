@@ -633,15 +633,15 @@ def execute_view_merge(node_state: NodeState) -> NodeState:
     into the local view of blocks `node_state.view_blocks` and the buffer of votes `node_state.buffer_votes` into the 
     local view of votes `node_state.view_votes`.
     """ 
-    node_state = node_state.set(blocks=pmap_merge(node_state.view_blocks, node_state.buffer_blocks))
-    node_state = node_state.set(view_vote=pset_merge(
+    node_state = node_state.set(view_blocks=pmap_merge(node_state.view_blocks, node_state.buffer_blocks))
+    node_state = node_state.set(view_votes=pset_merge(
         pset_merge(
             node_state.view_votes,
             node_state.buffer_votes
         ),
         get_votes_included_in_blocks(get_all_blocks(node_state)))
     )
-    node_state = node_state.set(buffer_vote=pset_get_empty())
+    node_state = node_state.set(buffer_votes=pset_get_empty())
     node_state = node_state.set(buffer_blocks=pmap_get_empty())
     return node_state
 
