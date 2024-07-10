@@ -260,7 +260,7 @@ def filter_out_FFG_vote_not_linking_to_a_checkpoint_in_next_slot(checkpoint: Che
     return pset_filter(lambda vote: is_FFG_vote_linking_to_a_checkpoint_in_next_slot(vote, checkpoint, node_state), node_state.view_votes)
 
 
-def get_validators_in_FFG_votes_linking_to_a_checkpoint_in_next_slot(checkpoint: Checkpoint, node_state) -> PSet[NodeIdentity]:
+def get_validators_in_FFG_votes_linking_to_a_checkpoint_in_next_slot(checkpoint: Checkpoint, node_state: NodeState) -> PSet[NodeIdentity]:
     """
     It retrieves the identities of validators who have cast ffg votes that support linking a specified `checkpoint` to its immediate successor.
     """
