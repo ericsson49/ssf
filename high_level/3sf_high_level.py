@@ -117,7 +117,7 @@ def on_vote(node_state: NodeState) -> NewNodeStateAndMessagesToTx:
         is_ancestor_descendant_relationship(k_deep_block, node_state.chava, node_state)
     ):
         node_state = node_state.set(
-            chAva=pset_max(
+            chava=pset_max(
                 pset_merge(
                     pset_get_singleton(bcand),
                     pset_get_singleton(k_deep_block)
