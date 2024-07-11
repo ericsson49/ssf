@@ -1,4 +1,4 @@
-from typing import TypeVar
+from typing import TypeVar, Iterable
 
 from pyrsistent import PSet, PMap, PVector, pset, pmap, pvector
 from formal_verification_annotations import *
@@ -28,11 +28,8 @@ def pset_merge(a: PSet[T1], b: PSet[T1]) -> PSet[T1]:
     return a.union(b)
 
 
-def pset_merge_flatten(s: PSet[PSet[T1]]) -> PSet[T1]:
-    return reduce(
-        lambda a, b: a.union(b),
-        pset()
-    )
+def pset_merge_flatten(s: Iterable[PSet[T1]]) -> PSet[T1]:
+    return reduce(pset_merge, s, pset())
 
 
 def pset_intersection(s1: PSet[T1], s2: PSet[T1]) -> PSet[T1]:
